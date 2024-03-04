@@ -16,7 +16,7 @@
       ctx.fillStyle = "lightblue";
       ctx.fillRect(0, 0, myCanvas.width, myCanvas.height);
       
-      //Draw Mountain
+      //Mountain
       // ctx.beginPath();
       // ctx.moveTo(350, 400); // Start from the bottom-left corner
 
@@ -29,8 +29,12 @@
       // ctx.fill();
       // ctx.stroke();
 
-      //Draw grass
-      for (let x = 0; x < myCanvas.width; x += 5) {
+      //Water
+      ctx.fillStyle = "rgb(0, 125, 255)";
+      ctx.fillRect(0, 400, 100, 100);
+
+      //Grass
+      for (let x = 100; x < myCanvas.width; x += 5) {
         ctx.beginPath();
         //small triangle
         ctx.moveTo(x, myCanvas.height-100);
@@ -41,12 +45,12 @@
         ctx.fill();
       }
 
-      //Draw house
-      //Draw bottom of house
+      //House
+      //bottom of house
       ctx.fillStyle = "beige";
       ctx.fillRect(400, 300, 150, 100);
 
-      //Draw Triangle(top of house)
+      //triangle(top of house)
       ctx.beginPath();
       ctx.moveTo(400, 300);
       ctx.lineTo(475, 200);
@@ -74,7 +78,7 @@
       ctx.stroke();
 
 
-      //Draw Cloud
+      //Cloud
       ctx.beginPath();
       ctx.arc(200, 50, 50, Math.PI, 2*Math.PI);
       ctx.moveTo(300, 50);
@@ -99,7 +103,7 @@
       //ctx.stroke();
 
 
-      //Draw another cloud (width+300)
+      //Another Cloud (width+300)
       ctx.beginPath();
       ctx.arc(500, 50, 50, Math.PI, 2*Math.PI);
       ctx.moveTo(600, 50);
@@ -123,7 +127,7 @@
       ctx.fill();
       //ctx.stroke();
 
-      //Draw sun (circle)
+      //Sun (circle)
       ctx.beginPath();
       ctx.arc(55, 55, 50, 0, 2*Math.PI); //(x, y, radius, startAngle, endAngle)
       ctx.fillStyle = "yellow";
@@ -133,12 +137,12 @@
 
       // Draw the ground
       ctx.fillStyle = "rgb(107, 56, 56)"; //brown
-      ctx.fillRect(0, 425, myCanvas.width, 75);
+      ctx.fillRect(100, 425, myCanvas.width, 75);
 
       ctx.fillStyle = "rgb(82, 209, 73)"; //green
-      ctx.fillRect(0, 400, myCanvas.width, 25);
+      ctx.fillRect(100, 400, myCanvas.width, 25);
 
-      //Draw tree
+      //Tree
       //Trunk
       ctx.fillStyle="rgb(107, 56, 56)";
       ctx.fillRect(700, 200, 30, 200);
@@ -182,10 +186,13 @@
       ctx.fillText('Sun', 30, 55);
       ctx.fillText('Cloud', 250, 75);
       ctx.fillText('Cloud', 550, 75);
+      ctx.fillText('Water', 10, 450);
       ctx.fillText('House', 450, 300);
       ctx.fillText('Tree', 700, 200);
       ctx.fillText('Grass', 300, 400);
       ctx.fillText('Ground', 500, 435);
+
+      
 
     </script>
   </body>
