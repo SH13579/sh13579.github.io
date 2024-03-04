@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Cartoon Project</title>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="1000" height="500" 
+      style="border: 1px solid #000000;">
+      Error
+    </canvas>
+
+    <script>
+      const myCanvas = document.getElementById('myCanvas');
+      const ctx = myCanvas.getContext("2d");
+      myCanvas.style.background = "lightblue";
+      
+      //Draw Mountain
+      // ctx.beginPath();
+      // ctx.moveTo(350, 400); // Start from the bottom-left corner
+
+      // // Draw lines to create the mountain silhouette
+      // ctx.lineTo(500, 100); // Peak of the mountain
+      // ctx.lineTo(650, 400); // Bottom-right corner
+      // ctx.closePath(); // Close the path
+      // ctx.fillStyle = "brown";
+      // ctx.strokeStyle = "brown";
+      // ctx.fill();
+      // ctx.stroke();
+
+      //Draw grass
+      for (let x = 0; x < myCanvas.width; x += 5) {
+        ctx.beginPath();
+        //small triangle
+        ctx.moveTo(x, myCanvas.height-100);
+        ctx.lineTo(x + 5, myCanvas.height-120); //top of triangle
+        ctx.lineTo(x + 10, myCanvas.height-100);
+        ctx.closePath();  //unnecessary because of ctx.fill()
+        ctx.fillStyle = "#228B22";
+        ctx.fill();
+      }
+
+      //Draw house
+      //Draw bottom of house
+      ctx.fillStyle = "beige";
+      ctx.fillRect(400, 300, 150, 100);
+
+      //Draw Triangle(top of house)
+      ctx.beginPath();
+      ctx.moveTo(400, 300);
+      ctx.lineTo(475, 200);
+      ctx.lineTo(550, 300);
+      ctx.lineTo(400, 300);
+      ctx.fillStyle = "rgb(255, 204, 153)";
+      ctx.strokeStyle = "rgb(255, 204, 153)";
+      ctx.fill();
+      ctx.stroke();
+      
+      //door
+      ctx.fillStyle = "brown";
+      ctx.fillRect(480, 330, 30, 70);
+
+      //window
+      ctx.fillStyle = "beige";
+      ctx.fillRect(487.5, 340, 15, 15);
+
+      //door knob
+      ctx.beginPath();
+      ctx.arc(500, 375, 3, 0, 2*Math.PI);
+      ctx.fillStyle = "black";
+      ctx.strokeStyle = "black";
+      ctx.fill();
+      ctx.stroke();
+
+
+      //Draw Cloud
+      ctx.beginPath();
+      ctx.arc(200, 50, 50, Math.PI, 2*Math.PI);
+      ctx.moveTo(300, 50);
+
+      ctx.arc(300, 50, 50, Math.PI, 2*Math.PI);
+      ctx.moveTo(350, 80);
+
+      ctx.arc(350, 80, 30, 1.5*Math.PI, .5*Math.PI);
+      ctx.moveTo(300, 110);
+
+      ctx.arc(300, 110, 50, 0, Math.PI);
+      ctx.moveTo(200, 110);
+
+      ctx.arc(200, 110, 50, 0, Math.PI);
+      ctx.moveTo(150, 80);
+
+      ctx.arc(150, 80, 30, .5*Math.PI, 1.5*Math.PI);
+      ctx.fillStyle = "lightgray";
+      //ctx.strokeStyle = "lightgray";
+      ctx.fillRect(150, 50, 200, 60); ////Rectangle to fill in the gap
+      ctx.fill();
+      //ctx.stroke();
+
+
+      //Draw another cloud (width+300)
+      ctx.beginPath();
+      ctx.arc(500, 50, 50, Math.PI, 2*Math.PI);
+      ctx.moveTo(600, 50);
+
+      ctx.arc(600, 50, 50, Math.PI, 2*Math.PI);
+      ctx.moveTo(650, 80);
+
+      ctx.arc(650, 80, 30, 1.5*Math.PI, .5*Math.PI);
+      ctx.moveTo(600, 110);
+
+      ctx.arc(600, 110, 50, 0, Math.PI);
+      ctx.moveTo(500, 110);
+
+      ctx.arc(500, 110, 50, 0, Math.PI);
+      ctx.moveTo(450, 80);
+
+      ctx.arc(450, 80, 30, .5*Math.PI, 1.5*Math.PI);
+      ctx.fillStyle = "lightgray";
+      //ctx.strokeStyle = "lightgray";
+      ctx.fillRect(450, 50, 200, 60); ////Rectangle to fill in the gap
+      ctx.fill();
+      //ctx.stroke();
+
+      //Draw sun (circle)
+      ctx.beginPath();
+      ctx.arc(55, 55, 50, 0, 2*Math.PI); //(x, y, radius, startAngle, endAngle)
+      ctx.fillStyle = "yellow";
+      //ctx.strokeStyle = "yellow";
+      ctx.fill(); //required for fillStyle()
+      //ctx.stroke();
+
+      // Draw the ground
+      ctx.fillStyle = "rgb(107, 56, 56)"; //brown
+      ctx.fillRect(0, 425, myCanvas.width, 75);
+
+      ctx.fillStyle = "rgb(82, 209, 73)"; //green
+      ctx.fillRect(0, 400, myCanvas.width, 25);
+
+      //Draw tree
+      //Trunk
+      ctx.fillStyle="rgb(107, 56, 56)";
+      ctx.fillRect(700, 200, 30, 200);
+
+      //Branches (use lineWidth)
+      ctx.beginPath();
+      ctx.moveTo(700, 300);
+      ctx.lineTo(650, 250);
+      ctx.moveTo(730, 300);
+      ctx.lineTo(780, 250);
+      ctx.closePath();
+      ctx.lineWidth = 20;
+      ctx.strokeStyle = "rgb(107, 56, 56)";
+      ctx.stroke();
+
+      //Leaves (circles)
+      ctx.beginPath();  //middle
+      ctx.arc(715, 200, 50, 0, 2 * Math.PI);
+      ctx.fillStyle = "green";
+      ctx.strokeStyle = "green";
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.beginPath();  //left
+      ctx.arc(650, 230, 50, 0, 2 * Math.PI);
+      ctx.fillStyle = "green";
+      ctx.strokeStyle = "green";
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.beginPath();  //right
+      ctx.arc(780, 230, 50, 0, 2 * Math.PI);
+      ctx.fillStyle = "green";
+      ctx.strokeStyle = "green";
+      ctx.fill();
+      ctx.stroke();
+
+      //Captions
+      ctx.fillStyle = "black";
+      ctx.font = "30px Arial";
+      ctx.fillText('Sun', 30, 55);
+      ctx.fillText('Cloud', 250, 75);
+      ctx.fillText('Cloud', 550, 75);
+      ctx.fillText('House', 450, 300);
+      ctx.fillText('Tree', 700, 200);
+      ctx.fillText('Grass', 300, 400);
+      ctx.fillText('Ground', 500, 435);
+
+    </script>
+  </body>
+</html>
