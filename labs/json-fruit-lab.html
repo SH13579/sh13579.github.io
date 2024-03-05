@@ -1,43 +1,43 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>JSON Fruit Lab</title>
-</head>
-<body>
-    <canvas id="myCanvas" width="1000" height="500" 
-      style="border: 1px solid #000000;">
-      Error
-    </canvas>
-    <script>
-        var fruit = [
-            { name:"Apple", quantity:20, color:"red" },
-            { name:"Orange", quantity:10, color:"orange" },
-            { name:"Banana", quantity:15, color:"yellow" },
-            { name:"Kiwi", quantity:5, color:"green" },
-            { name:"Blueberry", quantity:5, color:"blue" },
-            { name:"Grapes", quantity:10, color:"purple" }
-        ];
+  <head>
+      <title>JSON Fruit Lab</title>
+  </head>
+  <body>
+      <canvas id="myCanvas" width="1000" height="500" 
+        style="border: 1px solid #000000;">
+        Error
+      </canvas>
+      <script>
+          var fruit = [
+              { name:"Apple", quantity:20, color:"red" },
+              { name:"Orange", quantity:10, color:"orange" },
+              { name:"Banana", quantity:15, color:"yellow" },
+              { name:"Kiwi", quantity:5, color:"green" },
+              { name:"Blueberry", quantity:5, color:"blue" },
+              { name:"Grapes", quantity:10, color:"purple" }
+          ];
 
-        //JavaScript Object above ^^^
-        //JSON:
-        // {
-        //     "name": "Apple",
-        //     "quantity": "20",
-        //     "color": "red"
-        // }
+          //JavaScript Object above ^^^
+          //JSON:
+          // {
+          //     "name": "Apple",
+          //     "quantity": "20",
+          //     "color": "red"
+          // }
 
-        const myCanvas = document.getElementById("myCanvas");
-        const ctx = myCanvas.getContext("2d");
-        ctx.font = "15px Arial";
-        
-        for (let i=0; i<fruit.length; i++) {
-          ctx.fillStyle = fruit[i].color;
-          ctx.fillRect(0, i*50, fruit[i].quantity*20, 50);
-          ctx.fillStyle = 'black';  //must be after fillRect() to appear on top
-          ctx.fillText(fruit[i].quantity, 15, 25+i*50);//fillText('', startX, startY)
-          ctx.fillText(fruit[i].name, 5, 40+i*50);
-        }
-        
-    </script>
-</body>
+          const myCanvas = document.getElementById("myCanvas");
+          const ctx = myCanvas.getContext("2d");
+          ctx.font = "15px Arial";
+          
+          for (let i=0; i<fruit.length; i++) {
+            ctx.fillStyle = fruit[i].color;
+            ctx.fillRect(0, i*50, fruit[i].quantity*20, 50);
+            ctx.fillStyle = 'black';  //must be after fillRect() to appear on top
+            ctx.fillText(fruit[i].quantity, 15, 25+i*50);//fillText('', startX, startY)
+            ctx.fillText(fruit[i].name, 5, 40+i*50);
+          }
+          
+      </script>
+  </body>
 </html>
