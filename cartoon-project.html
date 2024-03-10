@@ -4,7 +4,7 @@
     <title>Cartoon Project</title>
   </head>
   <body>
-    <canvas id="myCanvas" width="1000" height="500" 
+    <canvas id="myCanvas" width="1000" height="600" 
       style="border: 1px solid #000000;">
       Error
     </canvas>
@@ -18,13 +18,13 @@
       background.addColorStop(0, "lightblue");
       background.addColorStop(1, "lightyellow");
 
-      //Fill with gradient
+      //Gradient
       ctx.fillStyle = background;
       ctx.fillRect(0, 0, myCanvas.width, myCanvas.height);
 
       //Water
       ctx.fillStyle = "rgb(0, 125, 255)";
-      ctx.fillRect(0, 400, 100, 100);
+      ctx.fillRect(0, 500, 100, 100);
 
       //Grass
       for (let x = 100; x < myCanvas.width; x += 5) {
@@ -41,14 +41,14 @@
       //House
       //bottom of house
       ctx.fillStyle = "beige";
-      ctx.fillRect(400, 300, 150, 100);
+      ctx.fillRect(400, 400, 150, 100);
 
       //triangle(top of house)
       ctx.beginPath();
-      ctx.moveTo(400, 300);
-      ctx.lineTo(475, 200);
-      ctx.lineTo(550, 300);
-      ctx.lineTo(400, 300);
+      ctx.moveTo(400, 400);
+      ctx.lineTo(475, 300);
+      ctx.lineTo(550, 400);
+      ctx.lineTo(400, 400);
       ctx.fillStyle = "rgb(255, 204, 153)";
       ctx.strokeStyle = "rgb(255, 204, 153)";
       ctx.fill();
@@ -56,15 +56,15 @@
       
       //door
       ctx.fillStyle = "brown";
-      ctx.fillRect(480, 330, 30, 70);
+      ctx.fillRect(480, 430, 30, 70);
 
       //window
       ctx.fillStyle = "beige";
-      ctx.fillRect(487.5, 340, 15, 15);
+      ctx.fillRect(487.5, 440, 15, 15);
 
       //door knob
       ctx.beginPath();
-      ctx.arc(500, 375, 3, 0, 2*Math.PI);
+      ctx.arc(500, 475, 3, 0, 2*Math.PI);
       ctx.fillStyle = "black";
       ctx.strokeStyle = "black";
       ctx.fill();
@@ -130,22 +130,22 @@
 
       // Draw the ground
       ctx.fillStyle = "rgb(107, 56, 56)"; //brown
-      ctx.fillRect(100, 425, myCanvas.width, 75);
+      ctx.fillRect(100, 525, myCanvas.width, 75);
 
       ctx.fillStyle = "rgb(82, 209, 73)"; //green
-      ctx.fillRect(100, 400, myCanvas.width, 25);
+      ctx.fillRect(100, 500, myCanvas.width, 25);
 
       //Tree
       //Trunk
       ctx.fillStyle="rgb(107, 56, 56)";
-      ctx.fillRect(700, 200, 30, 200);
+      ctx.fillRect(700, 300, 30, 200);
 
       //Branches (use lineWidth)
       ctx.beginPath();
-      ctx.moveTo(700, 300);
-      ctx.lineTo(650, 250);
-      ctx.moveTo(730, 300);
-      ctx.lineTo(780, 250);
+      ctx.moveTo(700, 400);
+      ctx.lineTo(650, 350);
+      ctx.moveTo(730, 400);
+      ctx.lineTo(780, 350);
       ctx.closePath();
       ctx.lineWidth = 20;
       ctx.strokeStyle = "rgb(107, 56, 56)";
@@ -153,21 +153,21 @@
 
       //Leaves (circles)
       ctx.beginPath();  //middle
-      ctx.arc(715, 200, 50, 0, 2 * Math.PI);
+      ctx.arc(715, 300, 50, 0, 2 * Math.PI);
       ctx.fillStyle = "green";
       //ctx.strokeStyle = "green";
       ctx.fill();
       //ctx.stroke();
 
       ctx.beginPath();  //left
-      ctx.arc(650, 230, 50, 0, 2 * Math.PI);
+      ctx.arc(650, 330, 50, 0, 2 * Math.PI);
       ctx.fillStyle = "green";
       //ctx.strokeStyle = "green";
       ctx.fill();
       //ctx.stroke();
 
       ctx.beginPath();  //right
-      ctx.arc(780, 230, 50, 0, 2 * Math.PI);
+      ctx.arc(780, 330, 50, 0, 2 * Math.PI);
       ctx.fillStyle = "green";
       //ctx.strokeStyle = "green";
       ctx.fill();
@@ -179,11 +179,11 @@
       ctx.fillText('Sun', 30, 55);
       ctx.fillText('Cloud', 250, 75);
       ctx.fillText('Cloud', 550, 75);
-      ctx.fillText('Water', 10, 450);
-      ctx.fillText('House', 450, 300);
-      ctx.fillText('Tree', 700, 200);
-      ctx.fillText('Grass', 300, 400);
-      ctx.fillText('Ground', 500, 435);
+      ctx.fillText('Water', 10, 550);
+      ctx.fillText('House', 450, 400);
+      ctx.fillText('Tree', 700, 300);
+      ctx.fillText('Grass', 300, 500);
+      ctx.fillText('Ground', 500, 535);
 
     </script>
   </body>
