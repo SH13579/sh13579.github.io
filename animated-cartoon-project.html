@@ -25,7 +25,7 @@
       //                                         //(startX, startY, endX, endY)
       // background.addColorStop(0, "lightblue");
       // background.addColorStop(1, "lightyellow");
-      //Fill with gradient
+      //Gradient
       // ctx.fillStyle = background;
       // ctx.fillRect(0, 0, myCanvas.width, myCanvas.height);
 
@@ -78,12 +78,10 @@
       ctx.stroke();
 
 
-      //CLOUD ANIMATION
-      let cloud1X = 200;
-      let cloud2X = 500;
+      //Cloud Animation
+      var cloud1X = 200;
+      var cloud2X = 500;
       const cloudY = 50;
-      const cloudSpeed1 = 1;
-      const cloudSpeed2 = 0.75;
 
       function drawCloud(x, y, r) { //(200, 50, 50); (500, 50, 50)
         ctx.beginPath();
@@ -109,41 +107,32 @@
         ctx.fill();
         //ctx.stroke();
       }
-      drawCloud(200, 50, 50); //left
+      //drawCloud(200, 50, 50); //left
       //drawCloud(500, 50, 50); //right
 
-      function updateClouds() {
-        cloud1X += cloudSpeed1;
-        if (cloud1X > myCanvas.width) {
-            cloud1X = 0;
-        }
-
-        cloud2X += cloudSpeed2;
-        if (cloud2X > myCanvas.width) {
-            cloud2X = 0;
-        }
-      }
-
       function cloudAnimation() {
-          ctx.clearRect(0, 0, myCanvas.width, 170);
+          ctx.clearRect(0, 0, myCanvas.width, 165);
           //myCanvas.style.background = "rgb(204, 255, 255)";
-          //Sun (circle)
-          ctx.beginPath();
-          ctx.arc(55, 55, 50, 0, 2*Math.PI); //(x, y, radius, startAngle, endAngle)
-          ctx.fillStyle = "yellow";
-          //ctx.strokeStyle = "yellow";
-          ctx.fill(); //required for fillStyle()
-          //ctx.stroke();
 
-          
-          drawCloud(cloud1X, cloudY, 50);
-          drawCloud(cloud2X, cloudY, 50);
+          drawSun(55, 55, 50);
+          drawCloud(cloud1X, 50, 50);
+          drawCloud(cloud2X, 50, 50);
+
+          cloud1X += 2;
+          if (cloud1X > myCanvas.width) {
+              cloud1X = 0;
+          }
+
+          cloud2X += 1;
+          if (cloud2X > myCanvas.width) {
+              cloud2X = 0;
+          }
+
           ctx.fillStyle='black';
+          ctx.fillText('Sun', 30, 55);
           ctx.fillText('Cloud1', cloud1X, 75);
-
-          ctx.fillStyle='black';
           ctx.fillText('Cloud2', cloud2X, 75);
-          updateClouds();
+
           window.requestAnimationFrame(cloudAnimation);
       }
 
@@ -151,14 +140,14 @@
 
       
 
-
-      // //Sun (circle)
-      // ctx.beginPath();
-      // ctx.arc(55, 55, 50, 0, 2*Math.PI); //(x, y, radius, startAngle, endAngle)
-      // ctx.fillStyle = "yellow";
-      // //ctx.strokeStyle = "yellow";
-      // ctx.fill(); //required for fillStyle()
-      // //ctx.stroke();
+      function drawSun(x, y, r) {
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, 2*Math.PI); //(x, y, radius, startAngle, endAngle)
+        ctx.fillStyle = "yellow";
+        //ctx.strokeStyle = "yellow";
+        ctx.fill(); //required for fillStyle()
+        //ctx.stroke();
+      }
 
       // Draw the ground
       ctx.fillStyle = "rgb(107, 56, 56)"; //brown
