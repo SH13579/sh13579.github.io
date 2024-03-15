@@ -13,9 +13,6 @@
 
     <script>
 
-      let img = new Image();
-      img.src = 'https://opengameart.org/sites/default/files/Green-Cap-Character-16x18.png';
-
       const myCanvas = document.getElementById('myCanvas');
       const ctx = myCanvas.getContext("2d");
 
@@ -110,28 +107,45 @@
       //drawCloud(200, 50, 50); //left
       //drawCloud(500, 50, 50); //right
 
+      var count = 0;
+
       function cloudAnimation() {
           ctx.clearRect(0, 0, myCanvas.width, 165);
-          //myCanvas.style.background = "rgb(204, 255, 255)";
+          ctx.clearRect(0, 0, 370, 420);
+          
+
+          myCanvas.style.background = "rgb(204, 255, 255)";
 
           drawSun(55, 55, 50);
           drawCloud(cloud1X, 50, 50);
           drawCloud(cloud2X, 50, 50);
+          
 
-          cloud1X += 2;
+          cloud1X += 5;
           if (cloud1X > myCanvas.width) {
               cloud1X = 0;
           }
 
-          cloud2X += 1;
+          cloud2X += 2;
           if (cloud2X > myCanvas.width) {
               cloud2X = 0;
           }
 
-          ctx.fillStyle='black';
+          if (cloud1X === cloud2X) {  //cloud collision
+            count++;
+          }
+
+          ctx.fillStyle = 'black';
           ctx.fillText('Sun', 30, 55);
           ctx.fillText('Cloud1', cloud1X, 75);
           ctx.fillText('Cloud2', cloud2X, 75);
+          ctx.font = '20px Arial';  //only for bubble speech
+          ctx.fillText('Cloud1 passed', 205, 330);
+          ctx.fillText('Cloud2', 205, 355);  //y+25
+          ctx.fillText(count + ' times!', 275, 355);
+          
+          ctx.font = '30px Arial';  //back to default
+          drawRectangleSpeechBubble(200, 300);
 
           window.requestAnimationFrame(cloudAnimation);
       }
@@ -194,10 +208,44 @@
       ctx.fill();
       //ctx.stroke();
 
+      //Draw person
+      ctx.beginPath();
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = "black";
+      ctx.arc(200, 450, 10, 0, 2*Math.PI);  //head
+      //torso
+      ctx.moveTo(200, 460);
+      ctx.lineTo(200, 475);
+      //legs
+      ctx.lineTo(210, 500);
+      ctx.moveTo(200, 475);
+      ctx.lineTo(190, 500);
+      //arms
+      ctx.moveTo(200, 465);
+      ctx.lineTo(210, 465);
+      ctx.moveTo(200, 465);
+      ctx.lineTo(190, 465);
+      ctx.stroke();
+
+      function drawRectangleSpeechBubble(x, y) {
+        ctx.beginPath();
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = "black";
+        ctx.moveTo(x, y);
+        ctx.lineTo(x+160, y);
+        ctx.lineTo(x+160, y+100);
+        ctx.lineTo(x+20, y+100);
+        ctx.lineTo(x+10, y+120);
+        ctx.lineTo(x+10, y+100);
+        ctx.lineTo(x, y+100);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+      }
+
       //Captions
       ctx.fillStyle = "black";
       ctx.font = "30px Arial";
-      ctx.fillText('Sun', 30, 155);
+      //ctx.fillText('Sun', 30, 155);
       // ctx.fillText('Cloud', 250, 175);
       // ctx.fillText('Cloud', 550, 175);
       ctx.fillText('Water', 10, 550);
