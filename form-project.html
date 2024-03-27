@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Project</title>
+  </head>
+
+  <style>
+    .bg-img {
+      background-image: url('images/sky-clouds-background.jpg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      min-height: 700px;
+    }
+
+  </style>
+  
+  <body>
+    <div class="bg-img">
+      <form id="formId">
+        <h1 >Pounds to Kilograms Conversion</h1>
+
+        <label>Enter pounds</label>
+        <input type="number" id="poundsToKg" placeholder="Enter weight in pounds">
+
+        <button onclick="convertToKg()">Convert</button>
+        <button type="button" id="resetButton" onclick="removePoundsToKgLocalStorage()">Reset</button>
+
+        <h1 id="result"></h1>
+
+        <br>
+        <h1>Earth Weight on Other Planets Conversion</h1>
+        <label>Mercury</label>
+        <input type="radio" name="planet" value="0.38">
+        <br>
+        <label>Venus</label>
+        <input type="radio" name="planet" value="0.91">
+        <br>
+        <label>Mars</label>
+        <input type="radio" name="planet" value="0.38">
+        <br>
+        <label>Jupiter</label>
+        <input type="radio" name="planet" value="2.36">
+        <br>
+        <label>Saturn</label>
+        <input type="radio" name="planet" value="0.95">
+        <br>
+        <label>Uranus</label>
+        <input type="radio" name="planet" value="0.89">
+        <br>
+        <label>Neptune</label>
+        <input type="radio" name="planet" value="1.12">
+        <br>
+        <input type="number" id="weight" placeholder="Enter weight in pounds">
+
+        <button onclick="convertToPlanetWeight()">Convert</button>
+        <button type="button" id="resetButton" onclick="removePlanetInputLocalStorage()">Reset</button>
+        
+        <h1 id="result2"></h1>
+      </form>
+      
+    </div>  
+  
+    <script>
+      var form = document.getElementById('formId');
+
+      //Pounds to kg conversion:
+      var pounds = document.getElementById('poundsToKg');
+      pounds.value = localStorage.getItem('poundsToKgInput');
+      console.log('pounds: ' + pounds.value);
+
+      function convertToKg() {
+        event.preventDefault(); //prevents refresh of page
+        //pounds = document.getElementById('poundsToKg').value;
+        
+        if (pounds.value === '') {
+          document.getElementById('result').innerHTML = 'Please enter a number';
+        }
+        else {
+          var kilograms = pounds.value * 0.45359237;
+          document.getElementById('result').innerHTML = kilograms + ' kg';
+          localStorage.setItem('poundsToKgInput', pounds.value);
+        }
+      }
+
+      //Planet weight conversion:
+      var radioButtons = document.getElementsByName('planet'); //array
+      var index = localStorage.getItem('radioButton');  //get index
+      if (index != null) {
+        //radio button remains selected after refreshing page
+        radioButtons[index].checked = true;
+        //note: must click Convert button for the selected button to save
+      }
+      var weight = document.getElementById('weight');
+      weight.value = localStorage.getItem('planetInput');
+
+      function convertToPlanetWeight() {
+        event.preventDefault();
+        //var radioButtons = document.getElementsByName('planet'); //array
+        var unchecked = 0;
+        var planetName = '';
+        
+        //Find selected radiobutton
+        for (let i=0; i<radioButtons.length; i++) {
+          if (radioButtons[i].checked) {
+            localStorage.setItem('radioButton', i); //save index
+            switch(i) {
+              case 0:
+                planetName = 'Mercury';
+                break; 
+              case 1:
+                planetName = 'Venus';
+                break; 
+              case 2:
+                planetName = 'Mars';
+                break; 
+              case 3:
+                planetName = 'Jupiter';
+                break; 
+              case 4:
+                planetName = 'Saturn';
+                break;
+              case 5:
+                planetName = 'Uranus';
+                break; 
+              case 6:
+                planetName = 'Neptune';
+                break;
+              default:
+                planetName = '';
+            }
+            var planetWeight = radioButtons[i].value * weight.value;
+          }
+          else {
+            unchecked++;
+          }
+        }
+
+        //Error messages:
+        if (unchecked === radioButtons.length && weight.value === '') {
+          document.getElementById('result2').innerHTML = 'Please select a planet and enter weight! ';
+        }
+        else if (unchecked === radioButtons.length) {
+          document.getElementById('result2').innerHTML = 'Please select a planet!';
+        }
+        else if (weight.value === '') {
+          document.getElementById('result2').innerHTML = 'Please enter weight!';
+        }
+        else {  //if no error:
+          document.getElementById('result2').innerHTML = 'Weight of ' + planetWeight + ' lbs in ' + planetName;
+          //Set item if radio button is selected AND user enters input
+          localStorage.setItem('planetInput', weight.value);
+        }
+        
+      }
+
+      function removePoundsToKgLocalStorage() {
+        localStorage.removeItem('poundsToKgInput');
+        document.getElementById('result').innerHTML = 'Reset Sucessful!';
+        pounds.value = '';
+        
+      }
+
+      function removePlanetInputLocalStorage() {
+        localStorage.removeItem('planetInput');
+        localStorage.removeItem('radioButton');
+        document.getElementById('result2').innerHTML = 'Reset Successful!';
+        weight.value = '';
+        //To unselect radio button:
+        for (let i=0; i<radioButtons.length; i++) {
+          radioButtons[i].checked = false;
+        }
+      }
+
+      // form.addEventListener('submit', convertToKg());
+      // form.addEventListener('submit', convertToPlanetWeight());
+      
+    </script>
+  </body>
+</html>
