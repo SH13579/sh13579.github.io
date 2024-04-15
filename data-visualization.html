@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Data Visualization</title>
+    </head>
+    <body>
+
+        <canvas id="myChart"></canvas>
+        <canvas id="myDoughnut"></canvas>
+
+        
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        
+        <script>
+          
+          const ctx = document.getElementById('myChart');
+          const ctx2 = document.getElementById('myDoughnut');
+        
+          Chart.defaults.font.size = 25;
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: [
+                'Borough Park, Ocean Parkway', 
+                'Canarsie, Flatlands', 
+                'Astoria, Long Island City', 
+                'Upper East Side', 
+                'Jamaica, St. Albans, Hollis', 
+                'Washington Heights, Inwood', 
+                'West Side, Upper West Side', 
+                'East New York, Starrett City', 
+                'Queens Village, Rosedale', 
+                'Flushing, Bay Terrace'],
+              datasets: [{
+                label: 'Population By Community Districts in NYC 2010',
+                data: [191382, 193543, 191105, 219920, 225919, 190020, 209084, 182896, 188593, 247354],
+                borderWidth: 3
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              },
+              layout: {
+                padding: {
+                  left: 50,
+                  right: 50,
+                  bottom: 50
+                }
+              },
+              title: {
+                display: true,
+                text: 'test'
+              }
+            }
+          });
+
+
+          new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+              labels: [
+                'Battery Park City, Manhattan', 
+                'Williamsburg, Brooklyn', 
+                'Long Island City, Queens', 
+                'Kingsbridge, RIverdale & Northeast Bronx, Bronx', 
+                'Jamaica, Queens', 
+                'Southwest, Brooklyn', 
+                'Bronx Park & Fordha, Bronx', 
+                'Mid-Island, Staten Island'],
+              datasets: [{
+                label: ' Average Rent',
+                data: [4550, 4250, 3255, 2400, 2150, 2100, 2200, 1700],
+                backgroundColor: [
+                  'rgba(255, 99, 132)',
+                  'rgba(255, 159, 64)',
+                  'rgba(255, 205, 86)',
+                  'rgba(75, 192, 192)',
+                  'rgba(54, 162, 235)',
+                  'rgba(153, 102, 255)',
+                  'rgba(171, 203, 207)',
+                  'rgba(75, 182, 12)',
+                ],
+                borderWidth: 1
+              }]
+            },
+            options: {
+              layout: {
+                padding: {
+                  left: 300,
+                  right: 300,
+                  bottom: 300
+                }
+              },
+              title: {
+                display: true,
+                text: 'Average Rent by Neighborhood in NYC'
+              }
+            }
+          });
+        </script>
+    </body>
+</html>
