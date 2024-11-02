@@ -3,7 +3,7 @@ name: Update Web Content at 1 PM EST
 on:
   schedule:
     # Runs daily at 1 PM EST (6 PM UTC)
-    - cron: '0 20 * * *'  # UTC time
+    - cron: '0 21 * * *'  # UTC time
 
 jobs:
   update-html:
