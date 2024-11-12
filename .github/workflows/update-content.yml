@@ -1,27 +1,30 @@
-# name: Update Web Content at 1 PM EST
+name: Update Web Content at 1 PM EST
 
-# on:
-#   schedule:
-#     # Runs daily at 1 PM EST (6 PM UTC)
-#     - cron: '0 21 * * *'  # UTC time
+on:
+  schedule:
+    # Runs daily
+    - cron: '0 21 * * *'  # UTC time (4 PM EST)
 
-# jobs:
-#   update-html:
-#     runs-on: ubuntu-latest
+jobs:
+  update-html:
+    runs-on: ubuntu-latest
 
-#     steps:
-#       - name: Checkout repository
-#         uses: actions/checkout@v3
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-#       - name: Update HTML Content
-#         run: |
-#           # Use sed to replace the placeholder text in test.html
-#           sed -i 's/This is before using GitHub Actions/This is after using GitHub Actions/' test.html
+      - name: Update HTML Content with Current Day
+        run: |
+          # Get the current day of the week
+          CURRENT_DAY=$(date +'%A')
+          
+          # Use sed to replace the placeholder text in test.html with the current day
+          sed -i "s/This is before using GitHub Actions/Today is $CURRENT_DAY, updated using GitHub Actions/" test.html
 
-#       - name: Commit and Push Changes
-#         run: |
-#           git config --global user.name "github-actions[bot]"
-#           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-#           git add test.html
-#           git commit -m "Update content in test.html to 'This is after using GitHub Actions'"
-#           git push
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add test.html
+          git commit -m "Update content in test.html to show current day of the week"
+          git push
